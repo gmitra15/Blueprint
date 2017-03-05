@@ -10,7 +10,7 @@
 
 Text::Text(std::string file) {
     _text.setFont(*FontLoader::getInstance()->getFont(file));
-    _text.setFillColor(sf::Color::White);
+    _text.setColor(sf::Color::White);
     _text.setCharacterSize(32);
 }
 
