@@ -1,6 +1,7 @@
 // import "random" for Random
 
 import "systems/circle" for Circle
+import "systems/random" for Random
 
 // var random = Random.new(677269698369)
 
@@ -65,33 +66,28 @@ class Section {
         }
     }
 
-	runColor(Section, player){
-		if(Section.sectColor == 0){
+	runColor(player){
+		if(sectColor == 0){
 			red(player)
-		} else if(Section.sectColor == 1){
+		} else if(sectColor == 1){
 			blue(player)
-		} else if(Section.sectColor == 2){
+		} else if(sectColor == 2){
 			green(player)
-		} else if(Section.sectColor == 3){
+		} else if(sectColor == 3){
 			pink(player)
-		} else if(Section.sectColor == 4){
-			white(player)
 		}
 	}
 	blue(player){
-		player.movesLeft = player.movesLeft + 2	
+		player.movesLeft = player.movesLeft + 1
 	}
 	red(player){
-		player.dead()		
+		player.die()		
 	}
 	green(player){
 		player.addPoints(2)
 	}
 	pink(player){
-		player.location = random.int(20)
-	}
-	white(player){
-		player.addPoints(1)
+		player.location = Random.int(20)
 	}
     render() {
         if (_circle) _circle.render()

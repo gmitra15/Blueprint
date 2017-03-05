@@ -1,10 +1,13 @@
 import "systems/vec" for Vec
 import "systems/sprite" for Sprite
+import "systems/random" for Random
 
 import "systems/director" for Director
 
 var LocationToCords = Fn.new{|location|
-    if (location == 0) {
+    if (location == -1) {
+        return Vec.new(-50000, 0)
+    } else if (location == 0) {
         return Vec.new(0, 0)
     } else if ((1..4).contains(location)) {
         var start = 0 - (Num.pi / 4)
@@ -70,14 +73,17 @@ class Player {
 
     construct new() {
         _location = 0
-        _movesLeft = 6
+        _movesLeft = 0
         _sprite = Sprite.new("nudes.png")
+
+        _points = 0
 
         _board = Director.current.board
     }
 
 	roll() {
-		movesLeft = random.int(5) + 1
+		movesLeft = movesLeft + Random.int(5) + 1
+        System.print(movesLeft)
 	}
 	die(){
 		_location = -1 // bye felicia	
@@ -93,9 +99,9 @@ class Player {
 		_location == 0	
 	}
 
-    render() {
+    render(i) {
         var pos = LocationToCords.call(_location)
-        _sprite.setPosition(pos.x + 1920/2, pos.y + 1080/2)
+        _sprite.setPosition(pos.x * 2 + 1920/2 - 30 + 60 * i, pos.y * 2 + 1080/2)
 
         _sprite.render()
     }

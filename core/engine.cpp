@@ -5,8 +5,10 @@
 #include "sound.hpp"
 #include "input.hpp"
 #include "view.hpp"
+#include "random.hpp"
 
 #include <iostream>
+#include <time.h>
 
 Engine *Engine::engine = nullptr;
 
@@ -25,6 +27,9 @@ void Engine::createBindings() {
     createInputBindings();
     createViewBindings();
     createCircleBindings();
+    createRandomBindings();
+
+    srand(time(0));
 }
 
 sf::RenderWindow *Engine::getWindow() {
