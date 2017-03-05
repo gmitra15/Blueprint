@@ -30,19 +30,23 @@ class Board {
         _sections[17].sectColor = 1
         _sections[19].sectColor = 2
         _sections[20].sectColor = 0
+        
+        _spincount = [0,1,2,3]
 	}
-
+	
 	boardSwap() {
-		for(row in _rows){
-			var temp = row[-1].sectColor
-			for(i in row){
-				var temp2 = i.sectColor
-				i.sectColor=temp
-				temp = temp2
-			}		
+		for(r in 0..._rows.count){
+			var row = _rows[r]
+			for(spin in 0..._spincount[r]){
+				var temp = row[-1].sectColor
+				for(i in row){
+					var temp2 = i.sectColor
+					i.sectColor=temp
+					temp = temp2
+				}		
+			}
 		}
 	}
-
     render() {
         for (section in _sections) {
             section.render()
