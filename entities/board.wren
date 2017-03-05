@@ -20,19 +20,38 @@ class Board {
 
         _sections[0].sectColor = 5
 
+        _sections[2].sectColor = 1
+
         _sections[5].sectColor = 1
         _sections[7].sectColor = 3
         _sections[9].sectColor = 0
         _sections[10].sectColor = 2
 
         _sections[14].sectColor = 0
-        _sections[15].sectColor = 2
+//         _sections[15].sectColor = 2
         _sections[17].sectColor = 1
+        _sections[18].sectColor = 3
         _sections[19].sectColor = 2
         _sections[20].sectColor = 0
         
         _spincount = [0,1,2,3]
+        _points = [0,1,2,4]
 	}
+
+    givePoints(player) {
+        if (!player.dead) {
+            for (r in 0..._rows.count) {
+                var row = _rows[r]
+                for (i in row) {
+                    if (i.sectLocation == player.location) {
+                        player.addPoints(_points[r])
+                        i.runColor(player)
+                        return
+                    }
+                }
+            }
+        }
+    }
 	
 	boardSwap() {
 		for(r in 0..._rows.count){
@@ -75,21 +94,21 @@ class Board {
 			return true
 		} else if(aLocation == 12 && [4,5,11,19,20].contains(bLocation)) {
 			return true
-		} else if(aLocation == 13 && [5,6,14,20].contains(bLocation)) {
+		} else if(aLocation == 13 && [5,6,14,20,-1].contains(bLocation)) {
 			return true
-		} else if(aLocation == 14 && [6,7,13,15].contains(bLocation)) {
+		} else if(aLocation == 14 && [6,7,13,15,-1].contains(bLocation)) {
 			return true
-		} else if(aLocation == 15 && [7,8,14,16].contains(bLocation)) {
+		} else if(aLocation == 15 && [7,8,14,16,-1].contains(bLocation)) {
 			return true
-		} else if(aLocation == 16 && [8,9,15,17].contains(bLocation)) {
+		} else if(aLocation == 16 && [8,9,15,17,-1].contains(bLocation)) {
 			return true
-		} else if(aLocation == 17 && [9,10,16,18].contains(bLocation)) {
+		} else if(aLocation == 17 && [9,10,16,18,-1].contains(bLocation)) {
 			return true
-		} else if(aLocation == 18 && [10,11,17,19].contains(bLocation)) {
+		} else if(aLocation == 18 && [10,11,17,19,-1].contains(bLocation)) {
 			return true
-		} else if(aLocation == 19 && [11,12,18,20].contains(bLocation)) {
+		} else if(aLocation == 19 && [11,12,18,20,-1].contains(bLocation)) {
 			return true
-		} else if(aLocation == 20 && [5,12,13,19].contains(bLocation)) {
+		} else if(aLocation == 20 && [5,12,13,19,-1].contains(bLocation)) {
 			return true
 		}
 		return false 

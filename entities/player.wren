@@ -1,10 +1,14 @@
 import "systems/vec" for Vec
 import "systems/sprite" for Sprite
+import "systems/random" for Random
 
 import "systems/director" for Director
+import "systems/sound" for Sound
 
 var LocationToCords = Fn.new{|location|
-    if (location == 0) {
+    if (location == -1) {
+        return Vec.new(-50000, 0)
+    } else if (location == 0) {
         return Vec.new(0, 0)
     } else if ((1..4).contains(location)) {
         var start = 0 - (Num.pi / 4)
@@ -46,7 +50,10 @@ class Player {
 		_roundsWon = value
 	}
 	win(){
-		roundsWon = roundsWon + 1	
+		roundsWon = roundsWon + 1
+
+        if (_num == 0) Sound.playSound("win1.wav")	
+        if (_num == 1) Sound.playSound("win2.wav")
 	}
 	movesLeft = (value){
 		_movesLeft = value	
@@ -68,24 +75,38 @@ class Player {
 		}
 	}
 
-    construct new() {
+    construct new(i) {
         _location = 0
-        _movesLeft = 6
-        _sprite = Sprite.new("nudes.png")
+        _movesLeft = 0
+        _num = i
+        if (i == 0) _sprite = Sprite.new("white.png")
+        if (i == 1) _sprite = Sprite.new("black.png")
+
+        _points = 0
+        _roundsWon = 0
 
         _board = Director.current.board
     }
 
+    reset() {
+        _location = 0
+        _movesLeft = 0
+        _points = 0
+    }
+
 	roll() {
-		movesLeft = random.int(5) + 1
+		movesLeft = movesLeft + Random.int(6) + 1
+        System.print(movesLeft)
 	}
 	die(){
+//         Sound.playSound("die.wav")
 		_location = -1 // bye felicia	
 	}
 	moveEnemy(enemy,target){
 		if(movesLeft >= 2 && enemy.location == _location && _board.nextTo(_location, target)){
 			enemy.location = target
 			_movesLeft = _movesLeft - 2
+            Sound.playSound("push.wav")
 		}
 	}
 
@@ -93,9 +114,9 @@ class Player {
 		_location == 0	
 	}
 
-    render() {
+    render(i) {
         var pos = LocationToCords.call(_location)
-        _sprite.setPosition(pos.x + 1920/2, pos.y + 1080/2)
+        _sprite.setPosition(pos.x * 2 + 1920/2 - 30 + 60 * i, pos.y * 2 + 1080/2)
 
         _sprite.render()
     }

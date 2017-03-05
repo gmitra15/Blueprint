@@ -11,3 +11,12 @@ foreign class Sprite {
 
     foreign render()
 }
+
+foreign class Text {
+    construct new(file) {}
+
+    foreign setString(string)
+    foreign setPosition(x, y)
+
+    foreign render()
+}
