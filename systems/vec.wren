@@ -24,6 +24,8 @@ class Vec {
         _y = vec.y
     }
 
+    angle() { _y.atan(_x) }
+
     length() { (_x * _x + _y * _y).sqrt }
 
     lengthSq() { (_x * _x + _y * _y) }
