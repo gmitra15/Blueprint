@@ -36,8 +36,8 @@ class Board {
 		for(row in _rows){
 			var temp = row[-1].sectColor
 			for(i in row){
-				var temp2 = row[i].sectColor
-				row[i].sectColor=temp
+				var temp2 = i.sectColor
+				i.sectColor=temp
 				temp = temp2
 			}		
 		}
