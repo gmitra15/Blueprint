@@ -1,13 +1,18 @@
 import "scenes/scene" for Scene
+import "systems/circle" for Circle
+
+import "entities/board" for Board
 
 class Game is Scene {
-    tick { _tick }
+    time { _time }
 
     construct new() {}
 
     enter() {
         _entities = []
         _time = 0
+
+        _board = Board.new()
     }
 
     addEntity(entity) {
@@ -32,10 +37,17 @@ class Game is Scene {
             e.update(dt)
         }
 
+        if (!_done && _time > 1) {
+            _board.boardSwap()
+            _doone = true
+        }
+
         purge()
     }
 
     render() {
+        _board.render()
+
         for (e in _entities) {
             e.render()
         }

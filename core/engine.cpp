@@ -1,6 +1,7 @@
 #include "engine.hpp"
 
 #include "sprite.hpp"
+#include "circle.hpp"
 #include "sound.hpp"
 #include "input.hpp"
 #include "view.hpp"
@@ -23,6 +24,7 @@ void Engine::createBindings() {
     createSoundBindings();
     createInputBindings();
     createViewBindings();
+    createCircleBindings();
 }
 
 sf::RenderWindow *Engine::getWindow() {
@@ -82,10 +84,10 @@ void Engine::run() {
         }
 
         if (redraw) {
+            window->clear();
             renderObjects.clear();
             render();
 
-            window->clear();
             for (auto layer : renderObjects) {
                 for (auto ro : layer.second) {
                     window->draw(ro);
