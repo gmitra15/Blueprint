@@ -2,7 +2,7 @@
 
 #include "Wren++.h"
 
-#include <sfml/graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 class Engine {
 private:

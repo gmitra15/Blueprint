@@ -1,6 +1,6 @@
 #include "Wren++.h"
 
-#include <sfml/window.hpp>
+#include <SFML/Window.hpp>
 
 #include "engine.hpp"
 

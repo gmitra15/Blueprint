@@ -1,6 +1,6 @@
 #pragma once
 
-#include <sfml/graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 class Sprite {
 private:
