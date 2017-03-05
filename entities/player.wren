@@ -3,6 +3,7 @@ import "systems/sprite" for Sprite
 import "systems/random" for Random
 
 import "systems/director" for Director
+import "systems/sound" for Sound
 
 var LocationToCords = Fn.new{|location|
     if (location == -1) {
@@ -49,7 +50,10 @@ class Player {
 		_roundsWon = value
 	}
 	win(){
-		roundsWon = roundsWon + 1	
+		roundsWon = roundsWon + 1
+
+        if (_num == 0) Sound.playSound("win1.wav")	
+        if (_num == 1) Sound.playSound("win2.wav")
 	}
 	movesLeft = (value){
 		_movesLeft = value	
@@ -71,27 +75,38 @@ class Player {
 		}
 	}
 
-    construct new() {
+    construct new(i) {
         _location = 0
         _movesLeft = 0
-        _sprite = Sprite.new("nudes.png")
+        _num = i
+        if (i == 0) _sprite = Sprite.new("white.png")
+        if (i == 1) _sprite = Sprite.new("black.png")
 
         _points = 0
+        _roundsWon = 0
 
         _board = Director.current.board
     }
 
+    reset() {
+        _location = 0
+        _movesLeft = 0
+        _points = 0
+    }
+
 	roll() {
-		movesLeft = movesLeft + Random.int(5) + 1
+		movesLeft = movesLeft + Random.int(6) + 1
         System.print(movesLeft)
 	}
 	die(){
+//         Sound.playSound("die.wav")
 		_location = -1 // bye felicia	
 	}
 	moveEnemy(enemy,target){
 		if(movesLeft >= 2 && enemy.location == _location && _board.nextTo(_location, target)){
 			enemy.location = target
 			_movesLeft = _movesLeft - 2
+            Sound.playSound("push.wav")
 		}
 	}
 

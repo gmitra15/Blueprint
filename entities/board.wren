@@ -28,7 +28,7 @@ class Board {
         _sections[10].sectColor = 2
 
         _sections[14].sectColor = 0
-        _sections[15].sectColor = 2
+//         _sections[15].sectColor = 2
         _sections[17].sectColor = 1
         _sections[18].sectColor = 3
         _sections[19].sectColor = 2

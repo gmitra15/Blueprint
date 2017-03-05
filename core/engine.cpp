@@ -6,6 +6,7 @@
 #include "input.hpp"
 #include "view.hpp"
 #include "random.hpp"
+#include "text.hpp"
 
 #include <iostream>
 #include <time.h>
@@ -28,6 +29,7 @@ void Engine::createBindings() {
     createViewBindings();
     createCircleBindings();
     createRandomBindings();
+    createTextBindings();
 
     srand(time(0));
 }
