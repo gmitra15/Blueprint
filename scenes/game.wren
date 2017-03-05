@@ -1,13 +1,26 @@
 import "scenes/scene" for Scene
 
+import "systems/circle" for Circle 
+
 class Game is Scene {
-    tick { _tick }
+    time { _time }
 
     construct new() {}
 
     enter() {
         _entities = []
         _time = 0
+
+        _circles = []
+
+        _circles.add(Circle.new(0, 0, Num.pi * 2, 200, 255, 0, 0))
+
+        _circles.add(Circle.new(0, 0, Num.pi * 2, 100, 255, 0, 0))
+
+        _circles.add(Circle.new(0, 100, Num.pi/2, 150, 255, 0, 0))
+        _circles.add(Circle.new(Num.pi/2, 100, Num.pi, 150, 255, 255, 255))
+        _circles.add(Circle.new(Num.pi, 100, Num.pi*3/2, 150, 255, 255, 255))
+        _circles.add(Circle.new(Num.pi*3/2, 100, Num.pi*2, 150, 255, 255, 255))
     }
 
     addEntity(entity) {
@@ -36,6 +49,10 @@ class Game is Scene {
     }
 
     render() {
+        for (c in _circles) {
+            c.render()
+        }
+
         for (e in _entities) {
             e.render()
         }
