@@ -69,11 +69,11 @@ class Board {
 			return true
 		} else if(aLocation == 9 && [2,3,8,10,16,17].contains(bLocation)) {
 			return true
-		} else if(aLocation == 10 && [3,9,10,17,18].contains(bLocation)) {
+		} else if(aLocation == 10 && [3,9,11,17,18].contains(bLocation)) {
 			return true
 		} else if(aLocation == 11 && [3,4,10,12,18,19].contains(bLocation)) {
 			return true
-		} else if(aLocation == 12 && [4,11,13,19,20].contains(bLocation)) {
+		} else if(aLocation == 12 && [4,5,11,19,20].contains(bLocation)) {
 			return true
 		} else if(aLocation == 13 && [5,6,14,20].contains(bLocation)) {
 			return true
