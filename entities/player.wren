@@ -35,4 +35,7 @@ class Player {
 			_movesLeft = _movesLeft - 2
 		}
 	}
+	playerReset(){
+		_location == 0	
+	}
 }
