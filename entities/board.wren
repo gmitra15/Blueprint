@@ -47,6 +47,53 @@ class Board {
 			}
 		}
 	}
+	
+	nextTo(aLocation,bLocation){
+		if(aLocation == 0 && [1,2,3,4].contains(bLocation)) {
+			return true
+		} else if(aLocation == 1 && [0,2,4,5,6,7].contains(bLocation)) {
+			return true
+		} else if(aLocation == 2 && [0,1,3,7,8,9].contains(bLocation)) {
+			return true
+		} else if(aLocation == 3 && [0,2,4,9,10,11].contains(bLocation)) {
+			return true
+		} else if(aLocation == 4 && [0,1,3,11,12,5].contains(bLocation)) {
+			return true
+		} else if(aLocation == 5 && [1,4,6,12,13,20].contains(bLocation)) {
+			return true
+		} else if(aLocation == 6 && [1,5,7,13,14].contains(bLocation)) {
+			return true
+		} else if(aLocation == 7 && [1,2,6,8,14,15].contains(bLocation)) {
+			return true
+		} else if(aLocation == 8 && [2,7,9,15,16].contains(bLocation)) {
+			return true
+		} else if(aLocation == 9 && [2,3,8,10,16,17].contains(bLocation)) {
+			return true
+		} else if(aLocation == 10 && [3,9,10,17,18].contains(bLocation)) {
+			return true
+		} else if(aLocation == 11 && [3,4,10,12,18,19].contains(bLocation)) {
+			return true
+		} else if(aLocation == 12 && [4,11,13,19,20].contains(bLocation)) {
+			return true
+		} else if(aLocation == 13 && [5,6,14,20].contains(bLocation)) {
+			return true
+		} else if(aLocation == 14 && [6,7,13,15].contains(bLocation)) {
+			return true
+		} else if(aLocation == 15 && [7,8,14,16].contains(bLocation)) {
+			return true
+		} else if(aLocation == 16 && [8,9,15,17].contains(bLocation)) {
+			return true
+		} else if(aLocation == 17 && [9,10,16,18].contains(bLocation)) {
+			return true
+		} else if(aLocation == 18 && [10,11,17,19].contains(bLocation)) {
+			return true
+		} else if(aLocation == 19 && [11,12,18,20].contains(bLocation)) {
+			return true
+		} else if(aLocation == 20 && [5,12,13,19].contains(bLocation)) {
+			return true
+		}
+		return false 
+	}
     render() {
         for (section in _sections) {
             section.render()
