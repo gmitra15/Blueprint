@@ -41,6 +41,13 @@ class Player {
 	location { _location }
 	movesLeft { _movesLeft }
 	dead {_location==-1}
+	roundsWon {_roundsWon}
+	roundsWon = (value){
+		_roundsWon = value
+	}
+	win(){
+		roundsWon = roundsWon + 1	
+	}
 	movesLeft = (value){
 		_movesLeft = value	
 	}
