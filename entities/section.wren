@@ -40,25 +40,29 @@ class Section {
 	}
 
     createCircle() {
+        createCircle(0)
+    }
+
+    createCircle(angleOffset) {
         _border = 2
         _rad = 0.01
 
         if (_sectLocation == 0) {
             _circle = Circle.new(0, 0, Num.pi*2, 50 - _border, r, g, b)
         } else if ((1..4).contains(_sectLocation)) {
-            var start = TOP
+            var start = TOP + angleOffset
             var dif = Num.pi / 2
             var i = _sectLocation - 1
 
             _circle = Circle.new(start + dif * i + _rad, 50 + _border, start + dif * (i + 1) - _rad, 100 - _border, r, g, b)
         } else if ((5..12).contains(_sectLocation)) {
-            var start = TOP - Num.pi / 8
+            var start = TOP - Num.pi / 8 + angleOffset
             var dif = Num.pi / 4
             var i = _sectLocation - 5
 
             _circle = Circle.new(start + dif * i + _rad, 100 + _border, start + dif * (i + 1) - _rad, 150 - _border, r, g, b)
         } else {
-            var start = TOP
+            var start = TOP + angleOffset
             var dif = Num.pi / 4
             var i = _sectLocation - 13
 

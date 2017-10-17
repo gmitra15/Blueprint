@@ -28,7 +28,6 @@ class Board {
         _sections[10].sectColor = 2
 
         _sections[14].sectColor = 0
-//         _sections[15].sectColor = 2
         _sections[17].sectColor = 1
         _sections[18].sectColor = 3
         _sections[19].sectColor = 2
@@ -54,6 +53,19 @@ class Board {
     }
 	
 	boardSwap() {
+        var spinSeed = 75
+        for(r in 0..._rows.count){
+            var row = _rows[r]
+            var spin = _spincount[r]
+            for (i in 0..spinSeed*spin) {
+                var ang = (i * Num.pi * 2) / (row.count * spinSeed)
+                for (sect in row) {
+                    sect.createCircle(ang)
+                }
+                Fiber.yield()
+            }
+        }
+
 		for(r in 0..._rows.count){
 			var row = _rows[r]
 			for(spin in 0..._spincount[r]){

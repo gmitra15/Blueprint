@@ -50,6 +50,13 @@ class Game is Scene {
         _ang = 0
         _wwe = Sprite.new("wwe.png")
 
+        _update = Fiber.new {
+            while (true) {
+                frame()
+                Fiber.yield()
+            }
+        }
+
         activePlayer.roll()
     }
 
@@ -150,6 +157,11 @@ class Game is Scene {
     }
 
     update(dt) {
+        _time = _time + dt
+        _update.call()
+    }
+
+    frame() {
         if (!_start) {
             if (_pos.y > 300) {
                 _pos.y = _pos.y - 6
@@ -164,7 +176,6 @@ class Game is Scene {
             }
         } else {
             _view.activate()
-            _time = _time + dt
 
             if (Mouse.buttonstate(0) == 1) {
 
